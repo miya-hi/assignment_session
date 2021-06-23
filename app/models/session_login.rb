@@ -1,0 +1,2 @@
+class SessionLogin < ApplicationRecord
+end
