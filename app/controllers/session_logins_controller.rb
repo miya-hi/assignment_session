@@ -8,6 +8,7 @@ class SessionLoginsController < ApplicationController
 
   # GET /session_logins/1 or /session_logins/1.json
   def show
+    @favorite = current_user.favorites.find_by(session_login_id: @session_login.id)
   end
 
   # GET /session_logins/new
@@ -21,8 +22,7 @@ class SessionLoginsController < ApplicationController
 
   # POST /session_logins or /session_logins.json
   def create
-    @session_login = SessionLogin.new(session_login_params)
-
+    @session_login = current_user.session_logins.build(session_login_params)
     respond_to do |format|
       if @session_login.save
         format.html { redirect_to @session_login, notice: "Session login was successfully created." }
